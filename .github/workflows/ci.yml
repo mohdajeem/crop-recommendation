@@ -26,6 +26,9 @@ jobs:
 
     - name: ✅ Run Flask app test
       run: |
-        python app.py &  # start server in background
-        sleep 10         # give server time to start
-        curl http://127.0.0.1:5000 || echo "Flask not running"
+        python app.py > output.log 2>&1 &
+        echo "Waiting for Flask to start..."
+        timeout 20 bash -c 'until curl -s http://127.0.0.1:5000; do sleep 1; done'
+        echo "Flask started! Here's the log:"
+        cat output.log
+      
