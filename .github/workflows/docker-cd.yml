@@ -27,4 +27,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: your_dockerhub_username/crop-recommendation:latest
+        tags: mohdaj/crop-recommendation:latest
